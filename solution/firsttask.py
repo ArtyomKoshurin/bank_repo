@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS debtors(
     debname TEXT,
     birthdate TEXT,
     birthplace TEXT,
+    region TEXT,
     adress TEXT,
     inn INTEGER,
     namehistory TEXT,
@@ -97,6 +98,7 @@ for message in range(0, len(root)):
     birth_date = debtor[1].text
     birth_place = debtor[2].text
     adress = debtor[3].text
+    region = adress.split(', ')[0]
     if len(debtor) == 4 or debtor[4].tag != 'Inn':
         debtor_inn = None
     else:
@@ -110,8 +112,8 @@ for message in range(0, len(root)):
         name_history = ', '.join(names)
 
     cur.execute(
-        'INSERT INTO debtors VALUES(?, ?, ?, ?, ?, ?, ?, ?);',
-        (debtor_id, debtor_name, birth_date, birth_place,
+        'INSERT INTO debtors VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);',
+        (debtor_id, debtor_name, birth_date, birth_place, region,
          adress, debtor_inn, name_history, message_id)
     )
     con.commit()
