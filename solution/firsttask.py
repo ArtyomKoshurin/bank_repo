@@ -12,7 +12,7 @@ cur = con.cursor()
 cur.executescript('''
 CREATE TABLE IF NOT EXISTS debtors(
     id INTEGER PRIMARY KEY,
-    name TEXT,
+    debname TEXT,
     birthdate TEXT,
     birthplace TEXT,
     adress TEXT,
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS debtors(
 
 CREATE TABLE IF NOT EXISTS banks(
     id INTEGER PRIMARY KEY,
-    name TEXT,
+    bankname TEXT,
     bik INTEGER,
     message_id INTEGER,
     FOREIGN KEY (message_id)  REFERENCES messages (id)
@@ -44,16 +44,16 @@ CREATE TABLE IF NOT EXISTS moneyobl(
 
 CREATE TABLE IF NOT EXISTS obligatorypayments(
     id INTEGER PRIMARY KEY,
-    name TEXT,
+    oblname TEXT,
     sum REAL,
-    penalty_sum REAL,
+    oblpenaltysum REAL,
     message_id INTEGER,
     FOREIGN KEY (message_id)  REFERENCES messages (id)
 );
 
 CREATE TABLE IF NOT EXISTS publishers(
     id INTEGER PRIMARY KEY,
-    name TEXT,
+    pubname TEXT,
     inn INTEGER,
     ogrn INTEGER,
     message_id INTEGER,
